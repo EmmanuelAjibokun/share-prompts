@@ -9,7 +9,7 @@ export const GET = async (request, { params }) => {
       creator: params.id
     }).populate("creator")
 
-    console.log("Prompts: ", prompts)
+    // console.log("Prompts: ", prompts)
 
     return new Response(JSON.stringify(prompts),{ status: 200 })
   } catch (error) {
