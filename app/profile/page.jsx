@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import Profile from "@components/Profile";
 
 const MyProfile = () => {
-  const { data: session } = useSession();
-  const [posts, setPosts] = useState();
+  const { data: session, status } = useSession();
+  const [posts, setPosts] = useState([]);
   const router = useRouter();
 
   const fetchPosts = async () => {
@@ -17,11 +17,11 @@ const MyProfile = () => {
     // console.log("data: ", data)
     setPosts(data);
   }
-
+  
   useEffect(() => {
-    console.log("session", session)
+    console.log("user id", session?.user.id)
     if (session?.user.id) fetchPosts();
-  }, [])
+  }, [status])
 
   const handleEdit = (post) => {
     router.push(`/update-prompt?id=${post._id}`)
@@ -32,14 +32,21 @@ const MyProfile = () => {
 
     if (hasConfirmed) {
       try {
-        await fetch(`api/prompt/${post._id.toString()}`, {
+        const res = await fetch(`api/prompt/${post._id.toString()}`, {
           method: "DELETE"
         });
-
+        
         const filteredPosts = posts.filter((p) => p._id !== post._id);
-
+        
         setPosts(filteredPosts)
+        
+        if (!res.ok) {
+          throw new Error("Failed to delete post from server");
+        }
       } catch (error) {
+        // Rollback UI: 'posts' still holds it's previous state is updated to include deletion, this is because, the component hasn't rerendered at this point to include new changes
+        setPosts(posts);
+        alert("Failed to delete post. Please try again.");
         console.log(error)
       }
     }

@@ -56,7 +56,7 @@ function Feed() {
       </form>
 
       <PromptCardList
-        data={[]}
+        data={posts}
         handleTagClick={()=>{}} />
     </section>
   )

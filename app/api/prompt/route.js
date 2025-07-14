@@ -5,7 +5,7 @@ export const GET = async (request) => {
   try {
     await connectToDB();
 
-    const prompts = await Prompt.find({}).populate("creator")
+    const prompts = await Prompt.find({}).populate("creator") // the populate method add extra details to the search result options: creator in the case would be added to the information returned about each post
 
     console.log("Prompts: ", prompts)
 
