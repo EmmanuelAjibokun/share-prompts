@@ -1,5 +1,14 @@
 'use client'
 
+/**
+ * Implement Search
+ * - Search by prompt content
+ * - Search by tag
+ * - Search by username
+ * Implement Click on tag
+ * Implement view other's profile
+ */
+
 import React, { useEffect, useState } from 'react';
 import PromptCard from './PromptCard';
 
@@ -22,6 +31,9 @@ function Feed() {
 
   // Search states
   const [searchText, setSearchText] = useState('');
+  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [searchedResults, setSearchedResults] = useState([]);
+
   const [posts, setPosts] = useState([]);
 
   const handleSearchChange = () => {

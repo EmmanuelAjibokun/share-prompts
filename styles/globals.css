@@ -118,7 +118,18 @@
 }
 
 .prompt_layout {
-  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+  @apply grid gap-6 mt-16;              /* base grid layout */
+  @apply grid-cols-1;                   /* mobile default: 1 column */
+  @apply sm:grid-cols-2;                /* small screens: 2 columns */
+  @apply xl:grid-cols-3;                /* large screens: 3 columns */
+}
+
+.truncated {
+  overflow: hidden;
+  display: block;
+  max-width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* Feed Component */
@@ -150,7 +161,7 @@
 
 /* PromptCard Component */
 .prompt_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:max-w-[360px] w-full h-fit;
 }
 
 .flex-center {

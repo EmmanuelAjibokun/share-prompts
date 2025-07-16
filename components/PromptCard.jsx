@@ -38,7 +38,7 @@ function PromptCard({ post, handleTagClick, handleEdit, handleDelete}) {
             <h3 className="font-satoshi font-semibold text-gray-900">
               {post.creator?.username}
             </h3>
-            <p className="font-inter text-sm text-gray-500 break-words w-full">
+            <p className="font-inter text-sm text-gray-500 w-full truncated" title={post.creator?.email}>
               {post.creator?.email}
             </p>
           </div>
