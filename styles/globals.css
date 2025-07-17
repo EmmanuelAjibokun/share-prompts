@@ -74,7 +74,7 @@
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6 pb-6;
 }
 
 .black_btn {
@@ -118,10 +118,7 @@
 }
 
 .prompt_layout {
-  @apply grid gap-6 mt-16;              /* base grid layout */
-  @apply grid-cols-1;                   /* mobile default: 1 column */
-  @apply sm:grid-cols-2;                /* small screens: 2 columns */
-  @apply xl:grid-cols-3;                /* large screens: 3 columns */
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 mt-16;
 }
 
 .truncated {
@@ -161,7 +158,12 @@
 
 /* PromptCard Component */
 .prompt_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:max-w-[360px] w-full h-fit;
+  @apply rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.prompt_card:hover {
+  @apply shadow-lg;
+  transform: translateY(-2px);
 }
 
 .flex-center {
